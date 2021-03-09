@@ -1,5 +1,6 @@
-const chainMaker = {
+const CustomError = require("../extensions/custom-error");
 
+const chainMaker = {
   chain: [],
 
   getLength() {
@@ -10,10 +11,9 @@ const chainMaker = {
     let strValue = `( ${value} )`;
     this.chain.push(strValue);
     return this;
-    },
+  },
   removeLink(position) {
-    if (typeof (position) !== 'number' || 
-      position > this.getLength() || position < 1) {
+    if (typeof position !== "number" || position > this.getLength() || position < 1) {
       this.chain = [];
       throw new Error();
     }
@@ -27,8 +27,8 @@ const chainMaker = {
   finishChain() {
     let finish = this.chain.slice();
     this.chain = [];
-    return finish.join('~~');
-  }
+    return finish.join("~~");
+  },
 };
 
 module.exports = chainMaker;
